@@ -15,15 +15,8 @@ export class Board {
     letters : string[][]
     selectedSquare : Coordinate | undefined
 
-    constructor() {
-        this.letters = []
-        for (let r:number = 0; r < 5; r++) {
-            this.letters[r] = []
-            for (let c:number = 0; c < 5; c++) {
-                this.letters[r][c] = ''
-            }
-        }
-
+    constructor(initialConfig: string[][]) {
+        this.letters = initialConfig
         this.selectedSquare = undefined
     }
 }
@@ -31,23 +24,17 @@ export class Board {
 export class Model {
     words : string[]
     board : Board
-    readonly configs = [ config1, config2, config3]
-    chosen : number
+    readonly configs = [config1, config2, config3]
 
     /** which is zero-based. */
-    constructor(which:number) {
-        this.chosen = which
-        let puzzle =  this.configs[this.chosen]
-        let board = new Board()
-        this.words = []
-        for (let r:number = 0; r < 5; r++) {
-            this.words[r] = puzzle.words[r]
+    constructor(selectedConfig:number) {
+        let puzzle =  this.configs[selectedConfig]
+        this.board = new Board(puzzle.initial)
+        this.words = puzzle.words
+    }
 
-            for (let c:number = 0; c < 5; c++) {
-                board.letters[r][c] = puzzle.initial[r][c]
-            }
-        }
-        this.board = board
+    setSelectedSquare(row:number, column:number) {
+        this.board.selectedSquare = new Coordinate(row, column)
     }
 
     contents(row:number, column:number) {
