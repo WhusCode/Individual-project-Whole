@@ -30,8 +30,12 @@ export default function Home() {
   // these CSS definitions inside the global.css file
   function css(row:number, column:number) {
     let selected = model.board.selectedSquare
+    let cellvalue = model.contents(row, column)
     if (selected?.row === row && selected?.column === column) {
       return "square selected"
+    }
+    if (cellvalue === '') {
+        return "square empty"
     }
     return "square"
   }

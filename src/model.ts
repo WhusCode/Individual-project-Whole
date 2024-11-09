@@ -64,7 +64,11 @@ export class Board {
             targetRow = this.selectedSquare?.row - 1
             console.log("Up")
             // Check if target row is not -1, then move contents
-            if (targetRow != -1){
+            if (targetRow != -1 && this.letters[targetRow][this.selectedSquare.column] != ''){
+                this.letters[targetRow][this.selectedSquare.column] =  this.letters[this.selectedSquare.row][this.selectedSquare.column]+this.letters[targetRow][this.selectedSquare.column];
+                console.log(this.letters[targetRow][this.selectedSquare.column])
+                this.letters[this.selectedSquare.row][this.selectedSquare.column] = '';
+                this.selectedSquare = new Coordinate(targetRow, this.selectedSquare.column);
                 console.log("Legal move")
                 return true
                 //this.letters[targetRow][this.selectedSquare?.column]
@@ -78,7 +82,11 @@ export class Board {
             targetRow = this.selectedSquare?.row + 1
             console.log("Down")
             // Check if target row is not 5, then move contents
-            if (targetRow != 5){
+            if (targetRow != 5 && this.letters[targetRow][this.selectedSquare.column] != '') {
+                this.letters[targetRow][this.selectedSquare.column] =  this.letters[this.selectedSquare.row][this.selectedSquare.column]+this.letters[targetRow][this.selectedSquare.column];
+                console.log(this.letters[targetRow][this.selectedSquare.column])
+                this.letters[this.selectedSquare.row][this.selectedSquare.column] = '';
+                this.selectedSquare = new Coordinate(targetRow, this.selectedSquare.column);
                 console.log("Legal move")
                 return true
             }
@@ -91,7 +99,11 @@ export class Board {
             targetCol = this.selectedSquare?.column - 1
             console.log("Left")
             // Check if target column is not -1, then move contents
-            if (targetCol != -1){
+            if (targetCol != -1 && this.letters[this.selectedSquare.row][targetCol] != ''){
+                this.letters[this.selectedSquare.row][targetCol] =  this.letters[this.selectedSquare.row][this.selectedSquare.column]+this.letters[this.selectedSquare.row][targetCol];
+                console.log(this.letters[this.selectedSquare.row][targetCol])
+                this.letters[this.selectedSquare.row][this.selectedSquare.column] = '';
+                this.selectedSquare = new Coordinate(this.selectedSquare.row, targetCol);
                 console.log("Legal move")
                 return true
             }
@@ -104,7 +116,11 @@ export class Board {
             targetCol = this.selectedSquare?.column + 1
             console.log("Right")
             // Check if target column is not 5, then move contents
-            if (targetCol != 5){
+            if (targetCol != 5 && this.letters[this.selectedSquare.row][targetCol] != ''){
+                this.letters[this.selectedSquare.row][targetCol] =  this.letters[this.selectedSquare.row][this.selectedSquare.column]+this.letters[this.selectedSquare.row][targetCol];
+                console.log(this.letters[this.selectedSquare.row][targetCol])
+                this.letters[this.selectedSquare.row][this.selectedSquare.column] = '';
+                this.selectedSquare = new Coordinate(this.selectedSquare.row, targetCol);
                 console.log("Legal move")
                 return true
             }
