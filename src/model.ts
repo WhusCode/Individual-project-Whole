@@ -62,9 +62,10 @@ export class Board {
 
         if (direction.equals(Up) && this.selectedSquare != undefined) {
             targetRow = this.selectedSquare?.row - 1
+            const lettersInSquareUp = this.letters[targetRow][this.selectedSquare.column]
             console.log("Up")
             // Check if target row is not -1, then move contents
-            if (targetRow != -1 && this.letters[targetRow][this.selectedSquare.column] != ''){
+            if (targetRow != -1 && lettersInSquareUp != '' && this.letters[this.selectedSquare.row][this.selectedSquare.column].length + lettersInSquareUp.length <= 6){
                 this.letters[targetRow][this.selectedSquare.column] =  this.letters[this.selectedSquare.row][this.selectedSquare.column]+this.letters[targetRow][this.selectedSquare.column];
                 console.log(this.letters[targetRow][this.selectedSquare.column])
                 this.letters[this.selectedSquare.row][this.selectedSquare.column] = '';
@@ -80,9 +81,10 @@ export class Board {
         }
         if (direction.equals(Down) && this.selectedSquare != undefined) {
             targetRow = this.selectedSquare?.row + 1
+            const lettersInSquareDown = this.letters[targetRow][this.selectedSquare.column]
             console.log("Down")
             // Check if target row is not 5, then move contents
-            if (targetRow != 5 && this.letters[targetRow][this.selectedSquare.column] != '') {
+            if (targetRow != 5 && this.letters[targetRow][this.selectedSquare.column] != '' && this.letters[this.selectedSquare.row][this.selectedSquare.column].length + lettersInSquareDown.length <= 6) {
                 this.letters[targetRow][this.selectedSquare.column] =  this.letters[this.selectedSquare.row][this.selectedSquare.column]+this.letters[targetRow][this.selectedSquare.column];
                 console.log(this.letters[targetRow][this.selectedSquare.column])
                 this.letters[this.selectedSquare.row][this.selectedSquare.column] = '';
@@ -97,9 +99,10 @@ export class Board {
         }
         if (direction.equals(Left) && this.selectedSquare != undefined) {
             targetCol = this.selectedSquare?.column - 1
+            const lettersInSquareLeft = this.letters[this.selectedSquare.row][targetCol]
             console.log("Left")
             // Check if target column is not -1, then move contents
-            if (targetCol != -1 && this.letters[this.selectedSquare.row][targetCol] != ''){
+            if (targetCol != -1 && this.letters[this.selectedSquare.row][targetCol] != '' && this.letters[this.selectedSquare.row][this.selectedSquare.column].length + lettersInSquareLeft.length <= 6){
                 this.letters[this.selectedSquare.row][targetCol] =  this.letters[this.selectedSquare.row][this.selectedSquare.column]+this.letters[this.selectedSquare.row][targetCol];
                 console.log(this.letters[this.selectedSquare.row][targetCol])
                 this.letters[this.selectedSquare.row][this.selectedSquare.column] = '';
@@ -114,9 +117,10 @@ export class Board {
         }
         if (direction.equals(Right) && this.selectedSquare != undefined) {
             targetCol = this.selectedSquare?.column + 1
+            const lettersInSquareRight = this.letters[this.selectedSquare.row][targetCol]
             console.log("Right")
             // Check if target column is not 5, then move contents
-            if (targetCol != 5 && this.letters[this.selectedSquare.row][targetCol] != ''){
+            if (targetCol != 5 && this.letters[this.selectedSquare.row][targetCol] != '' && this.letters[this.selectedSquare.row][this.selectedSquare.column].length + lettersInSquareRight.length <= 6){
                 this.letters[this.selectedSquare.row][targetCol] =  this.letters[this.selectedSquare.row][this.selectedSquare.column]+this.letters[this.selectedSquare.row][targetCol];
                 console.log(this.letters[this.selectedSquare.row][targetCol])
                 this.letters[this.selectedSquare.row][this.selectedSquare.column] = '';
@@ -160,5 +164,43 @@ export class Model {
 
     contents(row:number, column:number) {
         return this.board.letters[row][column]
+    }
+
+    calculateScore(): number {
+        let score = 0;
+        for (let r = 0; r < 5; r++) {
+            for (let c = 0; c < 5; c++) {
+                let cellValue = this.board.letters[r][c];
+                if (cellValue.length >= 2) {
+                    for (let word of this.words) {
+                        if (word.includes(cellValue)) {
+                            score += cellValue.length;
+                            break;
+                        }
+                    }
+                }
+            }
+        }
+        return score;
+    }
+
+    formedFiveWords(): boolean {
+        let wordCount = 0;
+        const foundWords = new Set();
+        for (let r = 0; r < 5; r++) {
+            for (let c = 0; c < 5; c++) {
+                let cellValue = this.board.letters[r][c];
+                if (cellValue.length >= 3 && cellValue.length <= 6) {
+                    for (let word of this.words) {
+                        if (this.words.includes(cellValue) && !foundWords.has(cellValue)){
+                            foundWords.add(cellValue);
+                            wordCount++;
+                            break;
+                        }
+                    }
+                }
+            }
+        }
+        return wordCount === 5;
     }
 }

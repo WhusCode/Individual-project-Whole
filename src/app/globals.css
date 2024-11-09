@@ -151,3 +151,9 @@ body {
   top: 450px;
   left: 560px;
 }
+
+.checksolution {
+  position:absolute;
+  top: 500px;
+  left: 560px;
+}
