@@ -51,7 +51,7 @@ body {
 }
 
 .selected {
-  background-color: #444;
+  background-color: #392;
   color: #eee;
 }
 
@@ -86,4 +86,64 @@ body {
   position: absolute;
   left: 550px;
   top: 50px;
+}
+
+.buttons {
+  position:absolute;
+  left: 550px;
+  top: 150px;
+}
+
+.upbutton {
+  position: absolute;
+  left: 50px;
+  top: 50px;
+}
+
+.downbutton {
+  position: absolute;
+  left: 50px;
+  top: 90px;
+}
+
+.leftbutton {
+  position: absolute;
+  left: 0px;
+  top: 70px;
+}
+
+.rightbutton {
+  position: absolute;
+  top: 70px;
+  left: 100px;
+}
+
+.resetbutton {
+  position:absolute;
+  top: 300px;
+  left: 587px;
+}
+
+.configbutton1 {
+  position:absolute;
+  color: #eeeeee;
+  background-color: #3399ff;
+  top: 350px;
+  left: 560px;
+}
+
+.configbutton2 {
+  background-color: #ff0066;
+  color: #eeeeee;
+  position:absolute;
+  top: 400px;
+  left: 560px;
+}
+
+.configbutton3 {
+  background-color: #009933;
+  color: #eeeeee;
+  position:absolute;
+  top: 450px;
+  left: 560px;
 }
