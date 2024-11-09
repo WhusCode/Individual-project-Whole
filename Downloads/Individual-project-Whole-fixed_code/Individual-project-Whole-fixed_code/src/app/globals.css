@@ -1,0 +1,153 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0a0a0a;
+    --foreground: #ededed;
+  }
+}
+
+body {
+  color: var(--foreground);
+  background: var(--background);
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}
+
+.board-row {
+  padding: 1px 1px 1px 1px;
+}
+
+.board {
+  position: absolute;
+  left: 10px;
+  top: 10px;
+}
+
+.square {
+  width: 100px;
+  height: 100px;
+  font: bold 18px Arial;
+  text-decoration: none;
+  background-color: #EEEEEE;
+  color: #0a0a0a;
+  padding: 2px 6px 2px 6px;
+  border-top: 1px solid #CCCCCC;
+  border-right: 1px solid #0a0a0a;
+  border-bottom: 1px solid #0a0a0a;
+  border-left: 1px solid #CCCCCC;
+}
+
+.square.empty {
+  background-color: gray;
+}
+
+.selected {
+  background-color: #392;
+  color: #eee;
+}
+
+.correct {
+  background-color: #070;
+  color: #eee;
+}
+
+.button {
+  font: bold 11px Arial;
+  text-decoration: none;
+  background-color: #EEEEEE;
+  color: #333333;
+  padding: 2px 6px 2px 6px;
+  border-top: 1px solid #CCCCCC;
+  border-right: 1px solid #333333;
+  border-bottom: 1px solid #333333;
+  border-left: 1px solid #CCCCCC;
+}
+
+.button-container {
+  display: flex;
+}
+
+.score {
+  position: absolute;
+  left: 550px;
+  top: 10px;
+}
+
+.numMoves {
+  position: absolute;
+  left: 550px;
+  top: 50px;
+}
+
+.buttons {
+  position:absolute;
+  left: 550px;
+  top: 150px;
+}
+
+.upbutton {
+  position: absolute;
+  left: 50px;
+  top: 50px;
+}
+
+.downbutton {
+  position: absolute;
+  left: 50px;
+  top: 90px;
+}
+
+.leftbutton {
+  position: absolute;
+  left: 0px;
+  top: 70px;
+}
+
+.rightbutton {
+  position: absolute;
+  top: 70px;
+  left: 100px;
+}
+
+.resetbutton {
+  position:absolute;
+  top: 300px;
+  left: 587px;
+}
+
+.configbutton1 {
+  position:absolute;
+  color: #eeeeee;
+  background-color: #3399ff;
+  top: 350px;
+  left: 560px;
+}
+
+.configbutton2 {
+  background-color: #ff0066;
+  color: #eeeeee;
+  position:absolute;
+  top: 400px;
+  left: 560px;
+}
+
+.configbutton3 {
+  background-color: #009933;
+  color: #eeeeee;
+  position:absolute;
+  top: 450px;
+  left: 560px;
+}
