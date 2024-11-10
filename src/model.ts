@@ -56,6 +56,7 @@ export class Board {
         this.selectedSquare = undefined
     }
     
+    // Move contents
     move(direction: MoveType) {
         let targetRow = this.selectedSquare?.row
         let targetCol = this.selectedSquare?.column
@@ -64,7 +65,7 @@ export class Board {
             targetRow = this.selectedSquare?.row - 1
             const lettersInSquareUp = this.letters[targetRow][this.selectedSquare.column]
             console.log("Up")
-            // Check if target row is not -1, then move contents
+            // Check if target row is not -1, then move contents up
             if (targetRow != -1 && lettersInSquareUp != '' && this.letters[this.selectedSquare.row][this.selectedSquare.column].length + lettersInSquareUp.length <= 6){
                 this.letters[targetRow][this.selectedSquare.column] =  this.letters[this.selectedSquare.row][this.selectedSquare.column]+this.letters[targetRow][this.selectedSquare.column];
                 console.log(this.letters[targetRow][this.selectedSquare.column])
@@ -83,7 +84,7 @@ export class Board {
             targetRow = this.selectedSquare?.row + 1
             const lettersInSquareDown = this.letters[targetRow][this.selectedSquare.column]
             console.log("Down")
-            // Check if target row is not 5, then move contents
+            // Check if target row is not 5, then move contents down
             if (targetRow != 5 && this.letters[targetRow][this.selectedSquare.column] != '' && this.letters[this.selectedSquare.row][this.selectedSquare.column].length + lettersInSquareDown.length <= 6) {
                 this.letters[targetRow][this.selectedSquare.column] =  this.letters[this.selectedSquare.row][this.selectedSquare.column]+this.letters[targetRow][this.selectedSquare.column];
                 console.log(this.letters[targetRow][this.selectedSquare.column])
@@ -101,7 +102,7 @@ export class Board {
             targetCol = this.selectedSquare?.column - 1
             const lettersInSquareLeft = this.letters[this.selectedSquare.row][targetCol]
             console.log("Left")
-            // Check if target column is not -1, then move contents
+            // Check if target column is not -1, then move contents left
             if (targetCol != -1 && this.letters[this.selectedSquare.row][targetCol] != '' && this.letters[this.selectedSquare.row][this.selectedSquare.column].length + lettersInSquareLeft.length <= 6){
                 this.letters[this.selectedSquare.row][targetCol] =  this.letters[this.selectedSquare.row][this.selectedSquare.column]+this.letters[this.selectedSquare.row][targetCol];
                 console.log(this.letters[this.selectedSquare.row][targetCol])
@@ -119,7 +120,7 @@ export class Board {
             targetCol = this.selectedSquare?.column + 1
             const lettersInSquareRight = this.letters[this.selectedSquare.row][targetCol]
             console.log("Right")
-            // Check if target column is not 5, then move contents
+            // Check if target column is not 5, then move contents right
             if (targetCol != 5 && this.letters[this.selectedSquare.row][targetCol] != '' && this.letters[this.selectedSquare.row][this.selectedSquare.column].length + lettersInSquareRight.length <= 6){
                 this.letters[this.selectedSquare.row][targetCol] =  this.letters[this.selectedSquare.row][this.selectedSquare.column]+this.letters[this.selectedSquare.row][targetCol];
                 console.log(this.letters[this.selectedSquare.row][targetCol])
