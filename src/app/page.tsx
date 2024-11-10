@@ -21,9 +21,16 @@ export default function Home() {
   }
 
   function handleClick(row:number, column:number) {
-    model.board.selectedSquare = {row, column}
-    andRefreshDisplay()
-    console.log(model.board.selectedSquare)
+    const squareContent = model.board.letters[row][column]; // Get the content of the square
+    let cellvalue = model.contents(row, column)
+    // Proceed only if the square has content and is not greyed out
+    if (squareContent && cellvalue != '') {
+        model.board.selectedSquare = { row, column };
+        andRefreshDisplay();
+        console.log(model.board.selectedSquare);
+    } else {
+        console.log("This square is not clickable.");
+    }
   }
 
   
@@ -48,14 +55,6 @@ export default function Home() {
       setNumMoves(numMoves + 1);
       setScore(model.calculateScore())
     }
-    andRefreshDisplay()
-  }
-
-  function reset() {
-    setModel(new Model(0))
-    setNumMoves(0)
-    setScore(0)
-    // somehow reset both score and moves as well
     andRefreshDisplay()
   }
 
